@@ -1,15 +1,11 @@
 
+
 # PragmataPro Semiotics
 Semiotics of all the symbols and signs of Pragmata Pro typeface
 
 The aim is to compile a csv file making possible to identify a symbol through a simple search of the meaning with a text editor.
 
-![PragmataPro semiotics](https://user-images.githubusercontent.com/1576663/113721003-72110400-96ef-11eb-8600-d48f42864e56.png)
-
-
-
-
-
+![PragmataPro semiotics](https://user-images.githubusercontent.com/1576663/113729238-1d718700-96f7-11eb-877c-538d7a432516.png)
 
 
 Contibutions are very welcome!
