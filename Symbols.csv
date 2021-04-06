@@ -1,6 +1,6 @@
 ,
 ,
-PRAGMATAPRO 0.829 SYMBOLS,
+,PRAGMATAPRO 0.829 SYMBOLS
 ,
 ,
 ⌀,
@@ -138,7 +138,7 @@ PRAGMATAPRO 0.829 SYMBOLS,
 ⎄,
 ⎅,
 ⎆,
-⎇,
+⎇,alt option
 ⎈,
 ⎉,
 ⎊,
@@ -434,26 +434,26 @@ PRAGMATAPRO 0.829 SYMBOLS,
 ♑,
 ♒,
 ♓,
-♔,
-♕,
-♖,
-♗,
-♘,
-♙,
-♚,
-♛,
-♜,
-♝,
-♞,
-♟,
-♠,
-♡,
-♢,
-♣,
-♤,
-♥,
-♦,
-♧,
+♔,chess
+♕,chess
+♖,chess
+♗,chess
+♘,chess
+♙,chess
+♚,chess
+♛,chess
+♜,chess
+♝,chess
+♞,chess
+♟,chess
+♠,spade
+♡,heart outline
+♢,diamond outline
+♣,clubs
+♤,spade outline
+♥,heart
+♦,diamond
+♧,clubs outline
 ♩,musical note
 ♪,musical note
 ♫,musical note
@@ -2019,28 +2019,28 @@ PRAGMATAPRO 0.829 SYMBOLS,
 ,comment comics cloud speak outline
 ,comments comics clouds speak outline
 ,bolt lightning
-,
-,
-,
-,
-,
-,
-,
-,
-,
-,
-,
-,
-,
-,
-,
-,
-,
-,
-,
-,
-,
-,
+,sitemap organize
+,umbrella
+,paste clipboard document file
+,lightbulb outline
+,exchange arrows 2 opposite directions
+,cloud download
+,cloud upload
+,user md medic doctor
+,stethoscope
+,bag suitcase
+,bell notification
+,coffe mug cup
+,utensils fork knife
+,document file outline
+,building
+,hospital
+,ambulance
+,first aid
+,fighter jet airplane
+,beer
+,hospital sign h square icon rounded
+,plus square rounded
 ,
 ,
 ,
@@ -4038,5 +4038,5 @@ PRAGMATAPRO 0.829 SYMBOLS,
 ,
 ,
 ,
-PragmataPro https://www.fsd.it/shop/fonts/pragmatapro/,
-© 2019-06-04 Fabrizio Schiavi,
+,PragmataPro https://www.fsd.it/shop/fonts/pragmatapro/
+,© 2021-04-06 Fabrizio Schiavi
