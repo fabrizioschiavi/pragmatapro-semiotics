@@ -1,7 +1,7 @@
 
 
 # PragmataPro Semiotics
-Semiotics of all the symbols and signs of Pragmata Pro typeface
+Semiotics of all the symbols and signs of [Pragmata Pro](http://www.fsd.it/shop/fonts/pragmatapro/) typeface
 
 The aim is to compile a csv file making possible to identify a symbol through a simple search of the meaning with a text editor.
 
