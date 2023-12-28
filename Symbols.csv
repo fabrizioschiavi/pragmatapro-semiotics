@@ -11,43 +11,43 @@ E008,,pair programming
 E009,,internal interruption
 E00A,,external interruption
 E0A0,,branch
-E0A1,,ln
-E0A2,,
-E0A3,,
+E0A1,,line number
+E0A2,,lock elevated privileges
+E0A3,,column number
 E0AE,,
 E0AF,,
-E0B0,,
-E0B1,,
-E0B2,,
-E0B3,,
-E0B4,,
-E0B5,,
-E0B6,,
-E0B7,,
-E0B8,,
-E0B9,,
-E0BA,,
-E0BB,,
-E0BC,,
-E0BD,,
-E0BE,,
-E0BF,,
-E0C0,,
-E0C1,,
-E0C2,,
-E0C3,,
-E0C4,,
-E0C5,,
-E0C6,,
-E0C7,,
-E0C8,,
-E0CA,,
-E0CC,,
-E0CD,,
-E0CE,,
-E0CF,,
-E0D0,,
-E0D1,,
+E0B0,,angly hierarchy prompt
+E0B1,,angly segment separator
+E0B2,,angly hierarchy prompt
+E0B3,,angly segment separator
+E0B4,,curvy
+E0B5,,curvy
+E0B6,,curvy
+E0B7,,curvy
+E0B8,,angly
+E0B9,,angly
+E0BA,,angly
+E0BB,,angly
+E0BC,,angly
+E0BD,,angly
+E0BE,,angly
+E0BF,,angly
+E0C0,,flames flamey
+E0C1,,flames flamey
+E0C2,,flames flamey
+E0C3,,flames flamey
+E0C4,,pixelated blocks pixey
+E0C5,,pixelated blocks pixey
+E0C6,,pixelated large blocks pixey
+E0C7,,pixelated large blocks pixey
+E0C8,,flames flamey
+E0CA,,flames flamey
+E0CC,,lego blocky
+E0CD,,lego blocky
+E0CE,,lego blocky
+E0CF,,lego blocky
+E0D0,,lego blocky
+E0D1,,lego blocky
 E0D2,,
 E0D4,,
 E200,,smaller
@@ -633,11 +633,11 @@ E6AF,,fennel
 E6B0,,common lisp
 E6B1,,scheme
 E6B2,,toml
-E700,,
+E700,,bing
 E701,,
 E702,,
 E703,,
-E704,,
+E704,,mysql
 E705,,
 E706,,
 E707,,dropbox
