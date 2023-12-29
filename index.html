@@ -42,7 +42,7 @@
      }
 
      function search(query) {
-       if (query === undefined) return data;
+       if (!query) return data;
        return data.filter(row => row[0].includes(query) || row[1].includes(query) || row[2].includes(query));
      }
 
