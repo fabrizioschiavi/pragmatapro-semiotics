@@ -117,8 +117,9 @@
 
      function search(query) {
        if (!query) return data;
-       query = query.toLowerCase();
-       return data.filter(row => row[0].includes(query) || row[1].includes(query) || row[2].includes(query));
+       const queryLower = query.toLowerCase();
+       const queryUpper = query.toUpperCase();
+       return data.filter(row => row[0].includes(queryUpper) || row[1].includes(queryLower) || row[2].includes(queryLower));
      }
 
      function update(query) {
