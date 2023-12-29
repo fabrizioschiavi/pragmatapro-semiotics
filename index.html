@@ -1,0 +1,86 @@
+<!-- -*- mode: web; web-mode-markup-indent-offset: 2; web-mode-code-indent-offset: 2; -*- -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>PragmataPro Semiotics</title>
+    <style>
+     * { font-family: 'PragmataPro'; }
+     body { max-width: 600px; margin: 0 auto; margin-bottom: 2em; }
+     th, td { padding: 0.5em; text-align: left; }
+     td:nth-child(2) { font-size: 1.5em; }
+     header { margin-bottom: 1em; width: 100%; display: flex; gap: 1em; }
+     input[type="search"] { flex-grow: 1; }
+    </style>
+    <script type="text/javascript">
+     const url = 'https://raw.githubusercontent.com/amake/pragmatapro-semiotics/main/Symbols.csv';
+     const initialQuery = parseQuery(window.location.search).q;
+     let data = [];
+     fetch(url).then(response => response.text()).then(text => {
+       data = text.trim().split('\n').splice(1).map(line => line.split(','));
+       update(initialQuery);
+     });
+
+     function parseQuery(query) {
+       const result = {};
+       for (const pair of query.slice(1).split('&')) {
+         const [key, value] = pair.split('=');
+         result[key] = value;
+       }
+       return result;
+     }
+
+     function search(query) {
+       if (query === undefined) return data;
+       return data.filter(row => row[0].includes(query) || row[1].includes(query) || row[2].includes(query));
+     }
+
+     function update(query) {
+       const tbody = document.querySelector('tbody');
+       const rows = search(query).map(row => {
+         const tr = document.createElement('tr');
+         for (const cell of row) {
+           const td = document.createElement('td');
+           td.textContent = cell;
+           tr.appendChild(td);
+         }
+         return tr;
+       });
+       tbody.replaceChildren(...rows);
+     }
+    </script>
+  </head>
+  <body>
+    <h1>PragmataPro Semiotics</h1>
+    <section>
+      <form action="">
+        <header>
+          <input name="q" type="search" placeholder="Search..." />
+          <input type="submit" />
+        </header>
+      </form>
+      <table>
+        <thead>
+          <tr>
+            <th>Codepoint</th>
+            <th>Symbol</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </section>
+  </body>
+  <script type="text/javascript">
+   const input = document.querySelector('input');
+   input.addEventListener('input', event => {
+     const query = event.target.value;
+     if (query.length < 3) return;
+     update(query);
+     window.history.replaceState({}, null, '?q=' + query);
+   });
+   if (initialQuery) {
+     input.value = initialQuery;
+   }
+  </script>
+</html>
