@@ -6,24 +6,98 @@
     <title>PragmataPro Semiotics</title>
     <style>
      * { font-family: 'PragmataPro'; }
-     body { max-width: 600px; margin: 0 auto; height: 100vh; background: white; color: black; }
+     body { max-width: 600px; margin: 0 auto; height: 100vh; }
      body, section { display: flex; flex-direction: column; overflow: hidden; }
      section > div { overflow-y: scroll; }
      table { border-collapse: collapse; margin-bottom: 2em; }
      th, td { padding: 0.5em; text-align: left; }
-     th { position: sticky; top: 0; background: white; }
+     th { position: sticky; top: 0; }
      td:nth-child(2) { font-size: 1.5em; }
      header { margin-bottom: 1em; width: 100%; display: flex; gap: 1em; }
      input[type="search"] { flex-grow: 1; }
      a { text-decoration: none; color: #06f; }
      a:hover { text-decoration: underline; }
      h1 { font-weight: 400; }
-     @media (prefers-color-scheme: dark) {
-         body { background: black; color: white; }
-         th { background: black; }
-     }
+     .theme { position: fixed; top: 1em; right: 1em; }
+     .theme:before { position: absolute; right: 100%; margin-right: 0.5em; }
+     .theme:hover:before { content: attr(data-tooltip); }
+
+     /* Color schemes */
+     body.light { background: white; color: black; }
+     .light th { background: white; }
+     .light .theme:before { color: black; }
+     body.dark { background: black; color: white; }
+     .dark th { background: black; }
+     .dark .theme:before { color: white; }
     </style>
     <script type="text/javascript">
+     function getUserTheme() {
+       return localStorage.getItem('theme');
+     }
+
+     function setUserTheme(value) {
+       localStorage.setItem('theme', value);
+     }
+
+     if (!getUserTheme()) {
+       setUserTheme('system');
+     }
+
+     const systemThemeQuery = window.matchMedia?.('(prefers-color-scheme: dark)');
+     systemThemeQuery?.addListener(applyTheme);
+
+     function getSystemTheme() {
+       return systemThemeQuery?.matches ? 'dark' : 'light';
+     }
+
+     function getEffectiveTheme() {
+       const userTheme = getUserTheme();
+       switch (userTheme) {
+         case 'system': return getSystemTheme();
+         default: return userTheme;
+       }
+     }
+
+     function themeIcon(theme) {
+       switch (theme) {
+         case 'dark': return '';
+         case 'light': return '';
+         case 'system': return '󰔎';
+       }
+     }
+
+     function themeLabel(theme) {
+       switch (theme) {
+         case 'dark': return 'Dark';
+         case 'light': return 'Light';
+         case 'system': return 'System';
+       }
+     }
+
+     function nextTheme(theme) {
+       switch (theme) {
+         case 'dark': return 'light';
+         case 'light': return 'system';
+         case 'system': return 'dark';
+       }
+     }
+
+     function applyTheme() {
+       const effectiveTheme = getEffectiveTheme();
+       const userTheme = getUserTheme();
+       document.body.classList.remove('light', 'dark', 'system');
+       document.body.classList.add(effectiveTheme);
+       const button = document.querySelector('.theme');
+       button.textContent = themeIcon(userTheme);
+       button.setAttribute('data-tooltip', themeLabel(userTheme));
+     }
+
+     function toggleTheme() {
+       const theme = nextTheme(getUserTheme());
+       setUserTheme(theme);
+       applyTheme();
+     }
+
      const url = 'https://raw.githubusercontent.com/fabrizioschiavi/pragmatapro-semiotics/main/Symbols.csv';
      const initialQuery = parseQuery(window.location.search).q;
      let data = [];
@@ -63,6 +137,7 @@
     </script>
   </head>
   <body>
+    <button class="theme"></button>
     <h1><a href="https://fsd.it/shop/fonts/pragmatapro/" target="_blank">PragmataPro</a> Semiotics</h1>
     <section>
       <form action="">
@@ -86,6 +161,10 @@
     </section>
   </body>
   <script type="text/javascript">
+   const themeButton = document.querySelector('.theme');
+   themeButton.addEventListener('click', toggleTheme);
+   applyTheme();
+
    const input = document.querySelector('input');
    input.addEventListener('input', event => {
      const query = event.target.value;
