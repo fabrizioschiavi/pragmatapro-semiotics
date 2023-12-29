@@ -110,7 +110,7 @@
        const result = {};
        for (const pair of query.slice(1).split('&')) {
          const [key, value] = pair.split('=');
-         result[key] = value;
+         result[key] = decodeURIComponent(value);
        }
        return result;
      }
