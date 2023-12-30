@@ -59,29 +59,11 @@
        }
      }
 
-     function themeIcon(theme) {
-       switch (theme) {
-         case 'dark': return '';
-         case 'light': return '';
-         case 'system': return '󰔎';
-       }
-     }
-
-     function themeLabel(theme) {
-       switch (theme) {
-         case 'dark': return 'Dark';
-         case 'light': return 'Light';
-         case 'system': return 'System';
-       }
-     }
-
-     function nextTheme(theme) {
-       switch (theme) {
-         case 'dark': return 'light';
-         case 'light': return 'system';
-         case 'system': return 'dark';
-       }
-     }
+     const themeData = {
+        dark: { icon: '', label: 'Dark', next: 'light' },
+        light: { icon: '', label: 'Light', next: 'system' },
+        system: { icon: '󰔎', label: 'System', next: 'dark' },
+     };
 
      function applyTheme() {
        const effectiveTheme = getEffectiveTheme();
@@ -89,12 +71,12 @@
        document.body.classList.remove('light', 'dark', 'system');
        document.body.classList.add(effectiveTheme);
        const button = document.querySelector('.theme');
-       button.textContent = themeIcon(userTheme);
-       button.setAttribute('data-tooltip', themeLabel(userTheme));
+       button.textContent = themeData[userTheme].icon;
+       button.setAttribute('data-tooltip', themeData[userTheme].label);
      }
 
      function toggleTheme() {
-       const theme = nextTheme(getUserTheme());
+       const theme = themeData[getUserTheme()].next;
        setUserTheme(theme);
        applyTheme();
      }
