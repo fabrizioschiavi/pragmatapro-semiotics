@@ -23,6 +23,8 @@
      .theme { position: fixed; top: 1em; right: 1em; }
      .theme:before { position: absolute; right: 100%; margin-right: 0.5em; }
      .theme:hover:before { content: attr(data-tooltip); }
+     #firefox-info, #safari-info { margin-top: 1em; margin-bottom: 2em; display: none; }
+     .firefox #firefox-info, .safari #safari-info { display: block; }
 
      /* Color schemes */
      body.light { background: #eee; color: #333; }
@@ -132,7 +134,15 @@
       <a href="https://fsd.it/shop/fonts/pragmatapro/" target="_blank">PragmataPro</a> Semiotics
       <span class="version"></span>
     </h1>
-    <section>
+    <details id="firefox-info">
+      <summary> Firefox users</summary>
+      <p>If you have PragmataPro installed but this page appears in a different font, try <a href="https://support.mozilla.org/en-US/kb/enhanced-tracking-protection-firefox-desktop#w_what-to-do-if-a-site-seems-broken">disabling Enhanced Tracking Protection for this domain</a>.</p>
+    </details>
+    <details id="safari-info">
+      <summary>💡 Safari users</summary>
+      <p>In order to prevent fingerprinting, Safari does not allow using locally installed fonts. Please use a different browser.</p>
+    </details>
+<section>
       <form action="">
         <header>
           <input name="q" type="search" placeholder="Search..." autofocus />
@@ -167,6 +177,21 @@
    });
    if (initialQuery) {
      input.value = initialQuery;
+   }
+
+   // Sniffing the user agent is not great, but capability detection is not
+   // possible because of fingerprinting protection, and mitigation strategies
+   // really do depend on the specific browser.
+
+   const userAgentLower = navigator.userAgent.toLowerCase();
+   const isFirefox = userAgentLower.includes('firefox');
+   if (isFirefox) {
+     document.body.classList.add('firefox');
+   }
+
+   const isSafari = userAgentLower.includes('safari') && !userAgentLower.includes('chrome');
+   if (isSafari) {
+     document.body.classList.add('safari');
    }
   </script>
 </html>
