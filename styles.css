@@ -1,0 +1,103 @@
+* {
+    font-family: "PragmataPro";
+  }
+  body {
+    max-width: 600px;
+    margin: 0 auto;
+    height: 100vh;
+  }
+  body,
+  section {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  section > div {
+    overflow-y: scroll;
+  }
+  table {
+    border-collapse: collapse;
+    margin-bottom: 2em;
+  }
+  th,
+  td {
+    padding: 0.5em;
+    text-align: left;
+  }
+  th {
+    position: sticky;
+    top: 0;
+  }
+  td:nth-child(2) {
+    font-size: 1.5em;
+  }
+  header {
+    margin-bottom: 1em;
+    width: 100%;
+    display: flex;
+    gap: 1em;
+    align-items: center;
+  }
+  input[type="search"] {
+    flex-grow: 1;
+    margin: 5px;
+  }
+  a {
+    text-decoration: none;
+    color: #06f;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
+  h1 {
+    font-weight: 400;
+  }
+  h1 span {
+    font-size: 0.5em;
+    opacity: 0.5;
+  }
+  .theme {
+    position: fixed;
+    top: 1em;
+    right: 1em;
+  }
+  .theme:before {
+    position: absolute;
+    right: 100%;
+    margin-right: 0.5em;
+  }
+  .theme:hover:before {
+    content: attr(data-tooltip);
+  }
+  #firefox-info,
+  #safari-info {
+    margin-top: 1em;
+    margin-bottom: 2em;
+    display: none;
+  }
+  .firefox #firefox-info,
+  .safari #safari-info {
+    display: block;
+  }
+
+  /* Color schemes */
+  body.light {
+    background: #eee;
+    color: #333;
+  }
+  .light th {
+    background: #eee;
+  }
+  .light .theme:before {
+    color: #333;
+  }
+  body.dark {
+    background: #333;
+    color: #eee;
+  }
+  .dark th {
+    background: #333;
+  }
+  .dark .theme:before {
+    color: #eee;
+  }

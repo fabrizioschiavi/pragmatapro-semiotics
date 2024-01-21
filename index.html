@@ -2,151 +2,41 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
+    <meta charset="utf-8" />
     <link rel="icon" href="https://avatars.githubusercontent.com/u/1576663" />
     <title>PragmataPro Semiotics</title>
-    <style>
-     * { font-family: 'PragmataPro'; }
-     body { max-width: 600px; margin: 0 auto; height: 100vh; }
-     body, section { display: flex; flex-direction: column; overflow: hidden; }
-     section > div { overflow-y: scroll; }
-     table { border-collapse: collapse; margin-bottom: 2em; }
-     th, td { padding: 0.5em; text-align: left; }
-     th { position: sticky; top: 0; }
-     td:nth-child(2) { font-size: 1.5em; }
-     header { margin-bottom: 1em; width: 100%; display: flex; gap: 1em; align-items: center; }
-     input[type="search"] { flex-grow: 1; margin: 5px; }
-     a { text-decoration: none; color: #06f; }
-     a:hover { text-decoration: underline; }
-     h1 { font-weight: 400; }
-     h1 span { font-size: 0.5em; opacity: 0.5; }
-     .theme { position: fixed; top: 1em; right: 1em; }
-     .theme:before { position: absolute; right: 100%; margin-right: 0.5em; }
-     .theme:hover:before { content: attr(data-tooltip); }
-     #firefox-info, #safari-info { margin-top: 1em; margin-bottom: 2em; display: none; }
-     .firefox #firefox-info, .safari #safari-info { display: block; }
-
-     /* Color schemes */
-     body.light { background: #eee; color: #333; }
-     .light th { background: #eee; }
-     .light .theme:before { color: #333; }
-     body.dark { background: #333; color: #eee; }
-     .dark th { background: #333; }
-     .dark .theme:before { color: #eee; }
-    </style>
-    <script type="text/javascript">
-     function getUserTheme() {
-       return localStorage.getItem('theme');
-     }
-
-     function setUserTheme(value) {
-       localStorage.setItem('theme', value);
-     }
-
-     if (!getUserTheme()) {
-       setUserTheme('system');
-     }
-
-     const systemThemeQuery = window.matchMedia?.('(prefers-color-scheme: dark)');
-     systemThemeQuery?.addListener(applyTheme);
-
-     function getSystemTheme() {
-       return systemThemeQuery?.matches ? 'dark' : 'light';
-     }
-
-     function getEffectiveTheme() {
-       const userTheme = getUserTheme();
-       switch (userTheme) {
-         case 'system': return getSystemTheme();
-         default: return userTheme;
-       }
-     }
-
-     const themeData = {
-        dark: { icon: '', label: 'Dark', next: 'light' },
-        light: { icon: '', label: 'Light', next: 'system' },
-        system: { icon: '󰔎', label: 'System', next: 'dark' },
-     };
-
-     function applyTheme() {
-       const effectiveTheme = getEffectiveTheme();
-       const userTheme = getUserTheme();
-       document.body.classList.remove('light', 'dark', 'system');
-       document.body.classList.add(effectiveTheme);
-       const button = document.querySelector('.theme');
-       button.textContent = themeData[userTheme].icon;
-       button.setAttribute('data-tooltip', themeData[userTheme].label);
-     }
-
-     function toggleTheme() {
-       const theme = themeData[getUserTheme()].next;
-       setUserTheme(theme);
-       applyTheme();
-     }
-
-     const url = 'https://raw.githubusercontent.com/fabrizioschiavi/pragmatapro-semiotics/main/Symbols.csv';
-     const initialQuery = parseQuery(window.location.search).q;
-     let data = [];
-     fetch(url).then(response => response.text()).then(text => {
-       const lines = text.trim().split('\n');
-       const version = lines[0].match(/[0-9]+\.[0-9.]+/)?.[0];
-       for (const v of document.querySelectorAll('.version')) {
-         v.textContent = version;
-       }
-       data = lines.splice(1).map(line => line.split(','));
-       update(initialQuery);
-     });
-
-     function parseQuery(query) {
-       const result = {};
-       for (const pair of query.slice(1).split('&')) {
-         const [key, value] = pair.split('=');
-         result[key] = decodeURIComponent(value);
-       }
-       return result;
-     }
-
-     function search(query) {
-       if (!query) return data;
-       const queryLower = query.toLowerCase();
-       const queryUpper = query.toUpperCase();
-       return data.filter(row => row[0].includes(queryUpper) || row[1].includes(queryLower) || row[2].includes(queryLower));
-     }
-
-     function update(query) {
-       const tbody = document.querySelector('tbody');
-       const rows = search(query).map(row => {
-         const tr = document.createElement('tr');
-         for (const cell of row) {
-           const td = document.createElement('td');
-           td.textContent = cell;
-           tr.appendChild(td);
-         }
-         return tr;
-       });
-       tbody.replaceChildren(...rows);
-     }
-    </script>
+    <link rel="stylesheet" href="styles.css">
+    <script src="scripts/main.js" type="text/javascript"></script>
   </head>
   <body>
     <button class="theme"></button>
     <h1>
-      <a href="https://fsd.it/shop/fonts/pragmatapro/" target="_blank">PragmataPro</a> Semiotics
+      <a href="https://fsd.it/shop/fonts/pragmatapro/" target="_blank">
+      PragmataPro</a>Semiotics
       <span class="version"></span>
     </h1>
     <details id="firefox-info">
       <summary> Firefox users</summary>
-      <p>If you have PragmataPro installed but this page appears in a different font, try <a href="https://support.mozilla.org/en-US/kb/enhanced-tracking-protection-firefox-desktop#w_what-to-do-if-a-site-seems-broken">disabling Enhanced Tracking Protection for this domain</a>.</p>
+      <p>
+        If you have PragmataPro installed but this page appears in a different
+        font, try
+        <a href="https://support.mozilla.org/en-US/kb/enhanced-tracking-protection-firefox-desktop#w_what-to-do-if-a-site-seems-broken">
+          disabling Enhanced Tracking Protection for this domain
+        </a>.
+      </p>
     </details>
     <details id="safari-info">
       <summary>💡 Safari users</summary>
-      <p>In order to prevent fingerprinting, Safari does not allow using locally installed fonts. Please use a different browser.</p>
+      <p>
+        In order to prevent fingerprinting, Safari does not allow using locally
+        installed fonts. Please use a different browser.
+      </p>
     </details>
-<section>
+    <section>
       <form action="">
         <header>
-          <input name="q" type="search" placeholder="Search..." autofocus />
-          <input type="submit" />
+          <input name="q" type="search" placeholder="Search..." autofocus>
+          <input type="submit">
         </header>
       </form>
       <div>
@@ -163,35 +53,5 @@
       </div>
     </section>
   </body>
-  <script type="text/javascript">
-   const themeButton = document.querySelector('.theme');
-   themeButton.addEventListener('click', toggleTheme);
-   applyTheme();
-
-   const input = document.querySelector('input');
-   input.addEventListener('input', event => {
-     const query = event.target.value;
-     if (query.length < 3) return;
-     update(query);
-     window.history.replaceState({}, null, '?q=' + query);
-   });
-   if (initialQuery) {
-     input.value = initialQuery;
-   }
-
-   // Sniffing the user agent is not great, but capability detection is not
-   // possible because of fingerprinting protection, and mitigation strategies
-   // really do depend on the specific browser.
-
-   const userAgentLower = navigator.userAgent.toLowerCase();
-   const isFirefox = userAgentLower.includes('firefox');
-   if (isFirefox) {
-     document.body.classList.add('firefox');
-   }
-
-   const isSafari = userAgentLower.includes('safari') && !userAgentLower.includes('chrome');
-   if (isSafari) {
-     document.body.classList.add('safari');
-   }
-  </script>
+  <script src="scripts/ui.js" type="text/javascript"></script>
 </html>
