@@ -16,7 +16,8 @@
      td:nth-child(2) { font-size: 1.5em; }
      header { margin-bottom: 1em; width: 100%; display: flex; gap: 1em; align-items: center; }
      input[type="search"] { flex-grow: 1; margin: 5px; }
-     a { text-decoration: none; color: #06f; }
+     input[type="submit"] { border-radius: 0; border: none; height: 26px; padding: 5px 10px; background-color: #09f; color: black;}
+     a { text-decoration: none; color: #07f; }
      a:hover { text-decoration: underline; }
      h1 { font-weight: 400; }
      h1 span { font-size: 0.5em; opacity: 0.5; }
@@ -30,9 +31,11 @@
      body.light { background: #eee; color: #333; }
      .light th { background: #eee; }
      .light .theme:before { color: #333; }
-     body.dark { background: #333; color: #eee; }
+     .light input[type="search"] { background-color: #fff; border: 1px black solid; padding: 5px 10px; height: 26px; color: black; width: 100%; }
+     body.dark { background: #333; color: #999; }
      .dark th { background: #333; }
      .dark .theme:before { color: #eee; }
+     .dark input[type="search"] { background-color: #999; border: 1px black solid; padding: 5px 10px; height: 26px; color: black; }
     </style>
     <script type="text/javascript">
      function getUserTheme() {
