@@ -89,7 +89,7 @@
      }
 
      const url = 'https://raw.githubusercontent.com/fabrizioschiavi/pragmatapro-semiotics/main/Symbols.csv';
-     const initialQuery = parseQuery(window.location.search).q;
+     const initialQuery = new URLSearchParams(window.location.search).get('q');
      let data = [];
      fetch(url).then(response => response.text()).then(text => {
        const lines = text.trim().split('\n');
@@ -100,15 +100,6 @@
        data = lines.splice(1).map(line => line.split(','));
        update(initialQuery);
      });
-
-     function parseQuery(query) {
-       const result = {};
-       for (const pair of query.slice(1).split('&')) {
-         const [key, value] = pair.split('=');
-         result[key] = decodeURIComponent(value);
-       }
-       return result;
-     }
 
      function search(query) {
        if (!query) return data;
